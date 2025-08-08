@@ -25,7 +25,8 @@ Training a segmentation model on the DOTA dataset presents two main challenges:
 1. **Image Size**: The original images are massive (up to 4000x4000 pixels) and cannot be loaded directly into GPU memory.
  2. **Class Imbalance**: The dataset is severely imbalanced. For instance, 'small-vehicle' and 'large-vehicle' pixels vastly outnumber pixels for classes like 'bridge' or 'harbor'.
 
-[INSERT BAR CHART HERE]
+<img width="4200" height="2400" alt="class_distribution" src="https://github.com/user-attachments/assets/f7304818-04d9-47c0-ac99-8cbd3ddb7674" />
+
 
 ## Data Pipeline: Handling Gigapixel Images
 To solve the image size problem, I engineered a data pipeline that crops the original large images and their corresponding masks into smaller, overlapping 1024x1024 patches. This approach allows the model to train efficiently on segments of the image without losing spatial context at the patch borders. The pipeline generated a dataset of over 10,000 trainable patches.
@@ -43,7 +44,8 @@ This, combined with targeted data augmentation (rotations, flips, color jitter),
 ## Results & Analysis
 The model's performance was evaluated using Mean Intersection over Union (mIoU). The strategies implemented resulted in a **180% relative increase in mIoU** compared to a baseline model.
 
-[INSERT GOOGLE SHEET SCREENSHOT THAT SHOWS THE VALUES]
+<img width="412" height="62" alt="image" src="https://github.com/user-attachments/assets/0b4b547b-a533-4f70-ac69-8d5c5713d4ec" />
+
 
 ### Future Work
 - Experiment with more advanced architectures like DeepLabv3+.
