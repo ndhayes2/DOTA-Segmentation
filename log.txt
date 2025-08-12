@@ -1,0 +1,71 @@
+June 18, 2025 - downloaded images and labels for train, validation, and test sets. Downloaded DOTA v1 devkit. Created directory for folders.
+
+June 18, 2025 - set up venv, installed numpy, opencv-python, Pillow, and shapely with pip install
+
+July 4, 2025 - long vacation. Finished  preprocessing script to split images into 1024x1024 pixels, with overlapping patches of 200 pixels
+
+July 7, 2025 - fixed preprocessing script, ran it to split images and create masks
+
+July 12, 2025 - created dataset.py, model.py, and train.py. Began debugging training script. Ran training script with 5 epochs:
+    Epoch 1 - 93.18% accuracy, dice score = 0.9317513108253479
+    Epoch 2 - 93.75% accuracy, dice score = 0.9374348521232605
+    Epoch 3 - 93.87% accuracy, dice score = 0.9386140704154968
+    Epoch 4 - 94.60% accuracy, dice score = 0.945930004119873
+    Epoch 5 - 94.55% accuracy, dice score = 0.9455190896987915
+
+July 14, 2025 - created predictions.py and grabbed evaluation metrics for the current best model:
+--- Evaluation Report ---
+Overall Pixel Accuracy: 94.60%
+Mean IoU (mIoU): 0.1614
+
+--- IoU for each class ---
+  background          : 0.9469
+  plane               : 0.4216
+  baseball-diamond    : 0.0291
+  bridge              : 0.0000
+  ground-track-field  : 0.0385
+  small-vehicle       : 0.0001
+  large-vehicle       : 0.1309
+  ship                : 0.0017
+  tennis-court        : 0.4478
+  basketball-court    : 0.0000
+  storage-tank        : 0.0000
+  soccer-ball-field   : 0.0000
+  roundabout          : 0.0000
+  harbor              : 0.4166
+  swimming-pool       : 0.1499
+  helicopter          : 0.0000
+-------------------------
+
+July 16, 2025 - implemented weighted loss function using class weights with higher weights for object the model fails on. Have not begun re-training, 
+  because that will take several hours.
+
+July 17, 2025 - began training overnight with 50 epochs. Let's see how this goes. 
+  Next morning - training continued through the night with no errors, so big success there. Looks like we only got through 42 epochs instead of 50, 
+  but I'm not going to let this continue. Best model was saved as best_model.pth 
+
+July 22, 2025 - Validated new model, got this report
+  --- Evaluation Report ---
+Overall Pixel Accuracy: 76.91%
+Mean IoU (mIoU): 0.2032
+
+--- IoU for each class ---
+  background          : 0.7637
+  plane               : 0.4961
+  baseball-diamond    : 0.0936
+  bridge              : 0.0215
+  ground-track-field  : 0.1195
+  small-vehicle       : 0.1273
+  large-vehicle       : 0.2590
+  ship                : 0.0755
+  tennis-court        : 0.5195
+  basketball-court    : 0.0630
+  storage-tank        : 0.0696
+  soccer-ball-field   : 0.2152
+  roundabout          : 0.0412
+  harbor              : 0.2617
+  swimming-pool       : 0.0669
+  helicopter          : 0.0580
+-------------------------
+  Slightly better than the last model, so I'm going to keep this. Anything better would need a lot more compute power than I have available.
+  

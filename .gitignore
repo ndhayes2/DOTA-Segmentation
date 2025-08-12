@@ -1,0 +1,27 @@
+# Python Virtual Environment
+# Ignores the entire .venv directory, which contains all installed packages.
+/.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Raw and Processed Data - VERY IMPORTANT
+# These lines will ignore your large dataset folders.
+/data_processed/
+/DOTA v1.0/
+/DOTA_devkit-master/
+
+# Trained Models & Logs
+# It's good practice to add these now for the future.
+*.pth
+*.pt
+*.onnx
+*.h5
+/runs/
+/logs/
+
+# IDEs and OS-specific files
+.vscode/
+.idea/
+*.DS_Store
